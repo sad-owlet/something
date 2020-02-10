@@ -1,7 +1,7 @@
-package com.es.firmaware.manager.db;
+package com.es.firmware.manager.db;
 
-import com.es.firmaware.manager.db.type.AbstractEntity;
-import com.es.firmaware.manager.db.type.HStoreType;
+import com.es.firmware.manager.db.type.AbstractEntity;
+import com.es.firmware.manager.db.type.HStoreType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.TypeDef;

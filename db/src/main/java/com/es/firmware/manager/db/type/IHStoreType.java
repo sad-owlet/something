@@ -1,4 +1,4 @@
-package com.es.firmaware.manager.db.type;
+package com.es.firmware.manager.db.type;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
