@@ -15,36 +15,35 @@ CREATE TABLE market (
 CREATE TABLE carBrand (
     id            SERIAL      NOT NULL PRIMARY KEY,
     name          VARCHAR(64) NOT NULL,
-    FOREIGN KEY(marketID) REFERENCES market(id)
+    FOREIGN KEY(id) REFERENCES market(id)
+);
+
+CREATE TABLE ecuType (
+    id            SERIAL      NOT NULL PRIMARY KEY,
+    name          VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE fuelType (
     id            SERIAL      NOT NULL PRIMARY KEY,
     name          VARCHAR(64) NOT NULL,
-    FOREIGN KEY(carBrandID) REFERENCES carBrand(id),
-    FOREIGN KEY(ecuTypeID) REFERENCES ecuType(id)
+    FOREIGN KEY(id) REFERENCES carBrand(id),
+    FOREIGN KEY(id) REFERENCES ecuType(id)
     
 );
 
-CREATE TABLE ecuType (
+CREATE TABLE gearboxType (
     id            SERIAL      NOT NULL PRIMARY KEY,
-    name          VARCHAR(64) NOT NULL,
-    
+    name          VARCHAR(64) NOT NULL
 );
 
 CREATE TABLE carModel (
     id            SERIAL      NOT NULL PRIMARY KEY,
     name          VARCHAR(64) NOT NULL,
-    FOREIGN KEY(ecuTypeID) REFERENCES ecuType(id),
-    FOREIGN KEY(gearboxTypeID) REFERENCES gearboxType(id)    
+    FOREIGN KEY(id) REFERENCES ecuType(id),
+    FOREIGN KEY(id) REFERENCES gearboxType(id)    
 );
 
 CREATE TABLE firmware (
-    id            SERIAL      NOT NULL PRIMARY KEY,
-    name          VARCHAR(64) NOT NULL
-);
-
-CREATE TABLE gearboxType (
     id            SERIAL      NOT NULL PRIMARY KEY,
     add_date      TIMESTAMP   NOT NULL DEFAULT current_timestamp,
     HW_id         VARCHAR(64) NOT NULL,
@@ -53,14 +52,14 @@ CREATE TABLE gearboxType (
     file_name     VARCHAR(64) NOT NULL,
     size          INTEGER     NOT NULL,
     author        VARCHAR(64) NOT NULL,
-    CRC32         INTEGER     NOT NULL
-    FOREIGN KEY(gearboxTypeID) REFERENCES gearboxType(id),
-    FOREIGN KEY(ecuTypeID) REFERENCES ecuType(id)        
+    CRC32         INTEGER     NOT NULL,
+    FOREIGN KEY(id) REFERENCES gearboxType(id),
+    FOREIGN KEY(id) REFERENCES ecuType(id)        
 );
 
 CREATE TABLE accessRequest (
     id            SERIAL      NOT NULL PRIMARY KEY,
     approved      BOOLEAN     NOT NULL DEFAULT FALSE,
-    FOREIGN KEY(personID) REFERENCES person(id),
-    FOREIGN KEY(firmwareID) REFERENCES firmware(id)       
+    FOREIGN KEY(id) REFERENCES person(id),
+    FOREIGN KEY(id) REFERENCES firmware(id)       
 );
