@@ -39,7 +39,7 @@ CREATE TABLE carModel (
     FOREIGN KEY(gearboxTypeID) REFERENCES gearboxType(id)    
 );
 
-CREATE TABLE gearboxType (
+CREATE TABLE firmware (
     id            SERIAL      NOT NULL PRIMARY KEY,
     name          VARCHAR(64) NOT NULL
 );
