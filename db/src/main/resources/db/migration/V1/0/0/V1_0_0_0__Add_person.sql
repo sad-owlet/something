@@ -12,39 +12,40 @@ CREATE TABLE market (
     name          VARCHAR(64) NOT NULL
 );
 
-CREATE TABLE carBrand (
+CREATE TABLE car_brand (
     id            SERIAL      NOT NULL PRIMARY KEY,
-    name          VARCHAR(64) NOT NULL,
-    FOREIGN KEY(id) REFERENCES market(id)
+    market        INTEGER     NOT NULL REFERENCES market(id) ON DELETE CASCADE,
+    name          VARCHAR(64) NOT NULL
 );
 
-CREATE TABLE ecuType (
+CREATE TABLE ecu_type (
     id            SERIAL      NOT NULL PRIMARY KEY,
     name          VARCHAR(64) NOT NULL
 );
 
-CREATE TABLE fuelType (
+CREATE TABLE fuel_type (
     id            SERIAL      NOT NULL PRIMARY KEY,
-    name          VARCHAR(64) NOT NULL,
-    FOREIGN KEY(id) REFERENCES carBrand(id),
-    FOREIGN KEY(id) REFERENCES ecuType(id)
-    
+    car_brand     INTEGER     NOT NULL REFERENCES car_brand(id) ON DELETE CASCADE,
+    ecu_type      INTEGER     NOT NULL REFERENCES ecu_type(id) ON DELETE CASCADE,
+    name          VARCHAR(64) NOT NULL
 );
 
-CREATE TABLE gearboxType (
+CREATE TABLE gearbox_type (
     id            SERIAL      NOT NULL PRIMARY KEY,
     name          VARCHAR(64) NOT NULL
 );
 
-CREATE TABLE carModel (
+CREATE TABLE car_model (
     id            SERIAL      NOT NULL PRIMARY KEY,
-    name          VARCHAR(64) NOT NULL,
-    FOREIGN KEY(id) REFERENCES ecuType(id),
-    FOREIGN KEY(id) REFERENCES gearboxType(id)    
+    ecu_type      INTEGER     NOT NULL REFERENCES ecu_type(id) ON DELETE CASCADE,
+    gearbox_type  INTEGER     NOT NULL REFERENCES gearbox_type(id) ON DELETE CASCADE,
+    name          VARCHAR(64) NOT NULL    
 );
 
 CREATE TABLE firmware (
     id            SERIAL      NOT NULL PRIMARY KEY,
+    gearbox_type  INTEGER     NOT NULL REFERENCES gearbox_type(id) ON DELETE CASCADE,
+    ecu_type      INTEGER     NOT NULL REFERENCES ecu_type(id) ON DELETE CASCADE,
     add_date      TIMESTAMP   NOT NULL DEFAULT current_timestamp,
     HW_id         VARCHAR(64) NOT NULL,
     SW_id         VARCHAR(64) NOT NULL,
@@ -52,14 +53,12 @@ CREATE TABLE firmware (
     file_name     VARCHAR(64) NOT NULL,
     size          INTEGER     NOT NULL,
     author        VARCHAR(64) NOT NULL,
-    CRC32         INTEGER     NOT NULL,
-    FOREIGN KEY(id) REFERENCES gearboxType(id),
-    FOREIGN KEY(id) REFERENCES ecuType(id)        
+    CRC32         INTEGER     NOT NULL       
 );
 
-CREATE TABLE accessRequest (
+CREATE TABLE access_request (
     id            SERIAL      NOT NULL PRIMARY KEY,
-    approved      BOOLEAN     NOT NULL DEFAULT FALSE,
-    FOREIGN KEY(id) REFERENCES person(id),
-    FOREIGN KEY(id) REFERENCES firmware(id)       
+    person        INTEGER     NOT NULL REFERENCES person(id) ON DELETE CASCADE,
+    firmware      INTEGER     NOT NULL REFERENCES firmware(id) ON DELETE CASCADE,
+    approved      BOOLEAN     NOT NULL DEFAULT FALSE       
 );
