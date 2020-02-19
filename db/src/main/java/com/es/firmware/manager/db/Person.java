@@ -10,6 +10,7 @@ import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,4 +31,7 @@ public class Person extends AbstractEntity<Integer> {
     @Column(name = "date_add", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAdd;
+        
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+    private List<AccessRequest> accessRequests;    
 }
