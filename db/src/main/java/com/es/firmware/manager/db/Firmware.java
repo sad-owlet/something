@@ -22,18 +22,18 @@ public class Firmware extends AbstractEntity<Integer> {
     private String SW_id;
     private String SW_number;
     private String file_name;
+    private String path;
     private Integer size;
     private String author;
-    private Integer CRC32;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private GearboxType gearboxType;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private EcuType ecuType;
+    private Integer crc32;
     @Column(name = "date_add", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAdd;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "accessRequest")
+    
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id")
+    private GearboxType gearboxType;
+   
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "access_request")
     private List<AccessRequest> accessRequests;
 }
