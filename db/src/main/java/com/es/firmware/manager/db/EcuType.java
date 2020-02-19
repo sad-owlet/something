@@ -20,11 +20,9 @@ public class EcuType extends AbstractEntity<Integer> {
     @Basic(optional = false)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fuelType")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "ecu_type")
     private List<FuelType> fuelTypes;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fuelType")
-    private List<Firmware> firmwares;
-
-
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "ecu_type")
+    private List<CarModel> carModels;
 }
