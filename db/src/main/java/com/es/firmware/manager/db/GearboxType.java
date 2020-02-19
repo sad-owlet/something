@@ -20,8 +20,10 @@ public class GearboxType extends AbstractEntity<Integer> {
 
     @Basic(optional = false)
     private String name;
-    @OneToOne(optional = false, mappedBy = "passport")
+    
+    @OneToOne(optional = false, mappedBy = "gearbox_type")
     private CarModel carModel;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "firmware")
-    private List<FuelType> fuelTypes;
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gearbox_type")
+    private List<Firmware> firmwares;
 }
