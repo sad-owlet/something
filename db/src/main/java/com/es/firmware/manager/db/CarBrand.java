@@ -1,52 +1,29 @@
 package com.es.firmware.manager.db;
 
-import com.es.firmware.manager.db.type.HStoreType;
-import lombok.Data;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
+import com.es.firmware.manager.db.type.AbstractEntity;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name = "carBrand")
-@TypeDefs({
-        @TypeDef(name = "hstore", typeClass = HStoreType.class)
-})
-
-public class CarBrand implements Serializable{
+@Table(name = "car_brand")
+public class CarBrand extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     @Basic(optional = false)
     private String name;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="id")
+    @JoinColumn(name = "id")
     private Market market;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "market")
     private List<FuelType> fuelTypes;
-
-    public CarBrand() {}
-
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id){
-        this.id=id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

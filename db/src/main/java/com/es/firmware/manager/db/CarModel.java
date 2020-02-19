@@ -1,51 +1,30 @@
 package com.es.firmware.manager.db;
 
-import com.es.firmware.manager.db.type.HStoreType;
+import com.es.firmware.manager.db.type.AbstractEntity;
 import lombok.Data;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name = "carModel")
-@TypeDefs({
-        @TypeDef(name = "hstore", typeClass = HStoreType.class)
-})
-
-public class CarModel implements Serializable {
+@Table(name = "car_model")
+public class CarModel extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     @Basic(optional = false)
     private String name;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="id")
-    private ECUtype ecuType;
+    @JoinColumn(name = "id")
+    private EcuType ecuType;
 
-    @OneToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="id")
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
     private GearboxType gearboxType;
-
-    public CarModel(){}
-
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id){
-        this.id=id;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
 }

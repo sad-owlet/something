@@ -1,7 +1,6 @@
 package com.es.firmware.manager.db;
 
 import com.es.firmware.manager.db.type.AbstractEntity;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,13 +12,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "market")
-public class Market extends AbstractEntity<Integer> {
+@Table(name = "ecu_type")
+public class EcuType extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
     @Basic(optional = false)
     private String name;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "market")
-    private List<CarBrand> carBrands;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fuelType")
+    private List<FuelType> fuelTypes;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fuelType")
+    private List<Firmware> firmwares;
+
+
 }

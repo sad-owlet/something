@@ -2,16 +2,18 @@ package com.es.firmware.manager.db;
 
 import com.es.firmware.manager.db.type.AbstractEntity;
 import com.es.firmware.manager.db.type.HStoreType;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "person")
 @TypeDefs({
@@ -23,8 +25,8 @@ public class Person extends AbstractEntity<Integer> {
     private String login;
     @Column(name = "password_hash")
     private String passwordHash;
-    private boolean active;
-    private boolean root;
+    private boolean active = false;
+    private boolean root = false;
     @Column(name = "date_add", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAdd;

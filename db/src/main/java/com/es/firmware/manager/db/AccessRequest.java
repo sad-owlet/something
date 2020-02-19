@@ -1,53 +1,29 @@
 package com.es.firmware.manager.db;
 
-import com.es.firmware.manager.db.type.HStoreType;
+import com.es.firmware.manager.db.type.AbstractEntity;
 import lombok.Data;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name = "accessRequest")
-@TypeDefs({
-        @TypeDef(name = "hstore", typeClass = HStoreType.class)
-})
-
-public class AccessRequest implements Serializable {
+@Table(name = "access_request")
+public class AccessRequest extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
-    @Basic(optional = false)
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Boolean approved;
-
-    public AccessRequest(){}
+    private boolean approved = false;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="id")
+    @JoinColumn(name = "id")
     private Person person;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="id")
+    @JoinColumn(name = "id")
     private Firmware firmware;
-
-
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id){
-        this.id=id;
-    }
-
-    public Boolean isApproved(){
-        return approved;
-    }
-    public void setApproved(Boolean approved){
-        this.approved=approved;
-    }
 }
