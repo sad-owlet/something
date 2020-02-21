@@ -1,24 +1,9 @@
-plugins {
-    id "org.flywaydb.flyway" version "6.2.3"
-}
 apply plugin: 'java'
 apply plugin: 'groovy'
 
-flyway {
-    url = "${jdbcUrl}"
-    user = "${jdbcUserName}"
-    password = "${jdbcPassword}"
-    schemas = ['public']
-    cleanDisabled = fwCleanDisabled
-    group = true
-}
-
-println('DB url: ' + jdbcUrl)
-println('DB user: ' + jdbcUserName)
-println('DB password: ' + jdbcPassword)
-
 dependencies {
     compile 'org.hibernate:hibernate-core:5.4.12.Final'
+    compile 'org.flywaydb:flyway-core:6.2.4'
     compileOnly  'org.postgresql:postgresql:42.2.10'
 
     compileOnly "org.projectlombok:lombok:1.18.12"

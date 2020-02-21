@@ -14,6 +14,14 @@
     <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
+        <class>com.es.firmware.manager.db.AccessRequest</class>
+        <class>com.es.firmware.manager.db.CarBrand</class>
+        <class>com.es.firmware.manager.db.CarModel</class>
+        <class>com.es.firmware.manager.db.EcuType</class>
+        <class>com.es.firmware.manager.db.Firmware</class>
+        <class>com.es.firmware.manager.db.FuelType</class>
+        <class>com.es.firmware.manager.db.GearboxType</class>
+        <class>com.es.firmware.manager.db.Market</class>
         <class>com.es.firmware.manager.db.Person</class>
 
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
