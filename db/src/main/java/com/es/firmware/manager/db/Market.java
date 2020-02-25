@@ -20,6 +20,7 @@ public class Market extends AbstractEntity<Integer> {
 
     @Basic(optional = false)
     private String name;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "market")
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     private List<CarBrand> carBrands;
 }
