@@ -24,10 +24,10 @@ public class AccessRequest extends AbstractEntity<Integer> {
     private Date dateAdd;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id", insertable = false, updatable = false)    
     private Person person;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Firmware firmware;
 }
