@@ -21,9 +21,9 @@ public class CarBrand extends AbstractEntity<Integer> {
     private String name;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Market market;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car_brand")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     private List<FuelType> fuelTypes;
 }
