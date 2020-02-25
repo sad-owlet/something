@@ -32,6 +32,6 @@ public class Person extends AbstractEntity<Integer> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAdd;
         
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     private List<AccessRequest> accessRequests;    
 }
