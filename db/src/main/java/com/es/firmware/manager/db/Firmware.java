@@ -18,9 +18,9 @@ public class Firmware extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
-    private String HW_id;
-    private String SW_id;
-    private String SW_number;
+    private String hardware;
+    private String software;
+    private String software_number;
     private String file_name;
     private String path;
     private Integer size;
@@ -31,9 +31,9 @@ public class Firmware extends AbstractEntity<Integer> {
     private Date dateAdd;
     
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private GearboxType gearboxType;
    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "access_request")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     private List<AccessRequest> accessRequests;
 }
