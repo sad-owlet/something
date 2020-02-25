@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,10 +22,9 @@ public class CarModel extends AbstractEntity<Integer> {
     private String name;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private EcuType ecuType;
 
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private GearboxType gearboxType;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+    private List<GearboxType> gearboxTypes;
 }
