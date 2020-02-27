@@ -45,7 +45,6 @@ CREATE TABLE gearbox_type (
 CREATE TABLE firmware (
     id              SERIAL       NOT NULL PRIMARY KEY,
     gearbox_type    INT          NOT NULL REFERENCES gearbox_type (id) ON DELETE CASCADE,
-    add_date        TIMESTAMP    NOT NULL DEFAULT current_timestamp,
     hardware        VARCHAR(128) NOT NULL,
     software        VARCHAR(128) NOT NULL,
     software_number VARCHAR(128) NOT NULL,

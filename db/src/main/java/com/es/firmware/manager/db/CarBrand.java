@@ -17,13 +17,9 @@ public class CarBrand extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
+    @JoinColumn(name = "market", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Market market;
     @Basic(optional = false)
     private String name;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private Market market;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<FuelType> fuelTypes;
 }

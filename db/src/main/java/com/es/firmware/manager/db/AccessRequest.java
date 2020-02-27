@@ -18,16 +18,14 @@ public class AccessRequest extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
+    @JoinColumn(name = "person", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Person person;
+    @JoinColumn(name = "firmware", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Firmware firmware;
     private boolean approved = false;
     @Column(name = "date_add", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAdd;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)    
-    private Person person;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private Firmware firmware;
 }

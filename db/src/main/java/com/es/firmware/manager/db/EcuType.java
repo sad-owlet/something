@@ -17,12 +17,9 @@ public class EcuType extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
+    @JoinColumn(name = "fuel_type", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private FuelType fuelType;
     @Basic(optional = false)
     private String name;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<FuelType> fuelTypes;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<CarModel> carModels;
 }

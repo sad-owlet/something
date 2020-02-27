@@ -18,13 +18,9 @@ public class CarModel extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
+    @JoinColumn(name = "ecu_type", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private EcuType ecuType;
     @Basic(optional = false)
     private String name;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private EcuType ecuType;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<GearboxType> gearboxTypes;
 }

@@ -10,16 +10,13 @@ import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "person")
-@TypeDefs({
-        @TypeDef(name = "hstore", typeClass = HStoreType.class)
-})
+@TypeDefs({@TypeDef(name = "hstore", typeClass = HStoreType.class)})
 public class Person extends AbstractEntity<Integer> {
 
     @Basic(optional = false)
@@ -31,7 +28,4 @@ public class Person extends AbstractEntity<Integer> {
     @Column(name = "date_add", insertable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateAdd;
-        
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<AccessRequest> accessRequests;    
 }

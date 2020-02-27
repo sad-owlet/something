@@ -18,13 +18,9 @@ public class GearboxType extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = 1L;
 
+    @JoinColumn(name = "car_model", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private CarModel carModel;
     @Basic(optional = false)
     private String name;
-    
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
-    private CarModel carModel;
-    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<Firmware> firmwares;
 }
