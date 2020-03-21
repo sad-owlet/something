@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <ui:composition template="/_templates/public.xhtml">
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="vee" value="#{redirectBean.vee}"/>
+                <f:viewAction action="#{redirectBean.redirectIfValidationError}"/>
+            </f:metadata>
+        </ui:define>
+        <ui:define name="growl"/>
+        <ui:define name="title">
+            Логин
+        </ui:define>
+        <ui:define name="body">
+            <ui:fragment rendered="#{redirectBean.vee}">
+                <script type="text/javascript">
+                    window.location.href = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '') +
+                        window.location.pathname;
+                </script>
+            </ui:fragment>
+            <div class="login-dialog">
+                <h:form id="loginForm" styleClass="es-double-submit-prevent">
+                    <p:focus context="loginForm" for="username"/>
+
+                    <div class="messages">
+                        <p:messages showIcon="false" showSummary="true" showDetail="false"
+                                    severity="warn,error,fatal"/>
+                    </div>
+
+                    <div class="element">
+                        <p:inputText id="username"
+
+                                     label="Логин"
+                                     placeholder="Логин"
+
+                                     value="#{loginBean.userId}"
+                                     required="true"/>
+                    </div>
+                    <div class="element">
+                        <p:password id="password"
+
+                                    label="Пароль"
+                                    placeholder="Пароль"
+
+                                    value="#{loginBean.password}"
+                                    required="true"
+                                    feedback="false"/>
+                    </div>
+                    <div class="element">
+                        <p:commandButton value="Вход"
+
+                                         styleClass="ui-priority-primary"
+
+                                         ajax="false"
+                                         process="@form"
+                                         action="#{loginBean.login()}"
+                                         validateClient="false"/>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

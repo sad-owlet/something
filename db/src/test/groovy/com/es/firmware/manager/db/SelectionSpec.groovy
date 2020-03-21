@@ -17,7 +17,7 @@ class SelectionSpec extends EntityManagerSpec {
         'select e from FuelType e'      | 0
         'select e from GearboxType e'   | 0
         'select e from Market e'        | 0
-        'select e from Person e'        | 0
+        'select e from Person e'        | 1
     }
 }
 

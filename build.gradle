@@ -1,5 +1,5 @@
 wrapper {
-    gradleVersion = '6.2.1'
+    gradleVersion = '6.2.2'
 }
 apply from: "build-${profile}.gradle"
 apply plugin: 'idea'
@@ -33,7 +33,11 @@ idea {
 }
 allprojects {
     repositories {
+        jcenter()
         mavenCentral()
+        maven {
+            url 'http://repository.primefaces.org/'
+        }
     }
 }
 
@@ -41,7 +45,17 @@ dependencies {
     compile project(':db')
     compile 'org.glassfish:javax.faces:2.4.0'
     compile 'org.primefaces:primefaces:7.0'
-    compile 'org.jboss.weld:weld-core:2.4.8.Final'
+    compile 'org.primefaces.themes:bootstrap:1.0.10'
+    compile 'commons-fileupload:commons-fileupload:1.4'
+    compile 'org.jboss.weld.servlet:weld-servlet-core:3.1.3.Final'
+    compile 'javax:javaee-api:8.0.1'
+
+    compile 'org.reflections:reflections:0.9.12'
+
+    compile 'org.slf4j:slf4j-api:1.7.30'
+    compile 'ch.qos.logback:logback-core:1.2.3'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'org.codehaus.janino:janino:2.7.8'
 
     compileOnly "org.projectlombok:lombok:1.18.12"
     annotationProcessor "org.projectlombok:lombok:1.18.12"

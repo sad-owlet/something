@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <ui:composition template="/_templates/common.xhtml">
+        <ui:define name="title">
+            Страница не найдена
+        </ui:define>
+        <ui:define name="content">
+            <h:form>
+                <p:panel header="Страница не найдена" styleClass="error-panel">
+                    <div class="message-holder">
+                        Страница не найдена
+                    </div>
+                    <div class="button-holder">
+                        <p:button value="На главную" outcome="#{pageBean.index}"/>
+                    </div>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
+

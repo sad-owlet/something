@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- develop -->
+    <if condition='p("com.es.profiles.active").equals("develop")'>
+        <then>
+            <property name="LEVEL" value="trace"/>
+            <property name="DIRECTORY" value="firmware-develop"/>
+        </then>
+    </if>
+
+    <property name="ROOT_LEVEL" value="error"/>
+    <property name="PATTERN" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+    <property name="ROOT_PATH" value="/var/log/es/${DIRECTORY:-firmware-develop}"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <appender name="com.es" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${ROOT_PATH}/log</File>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${ROOT_PATH}/log.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <logger name="com.es" level="${LEVEL:-trace}">
+        <appender-ref ref="com.es"/>
+    </logger>
+    <root level="${ROOT_LEVEL}">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

@@ -1,8 +1,8 @@
 ext {
     snapshot = false
 
-  /*  jdbcUrl = "jdbc:postgresql://db.ext-system.com/firmware_manager"
+    jdbcUrl = "jdbc:postgresql://db.ext-system.com/firmware_manager"
     jdbcUserName = "firmware_manager"
-    jdbcPassword = "firmware_manager"*/
+    jdbcPassword = "firmware_manager"
     fwCleanDisabled = false
 }

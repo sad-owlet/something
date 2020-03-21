@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<f:view contentType="text/html" encoding="utf-8">
+    <ui:insert name="metadata"/>
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="EmulateIE8"/>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>
+            <ui:insert name="title"/>
+        </title>
+
+        <ui:insert name="js"/>
+        <ui:insert name="css"/>
+    </h:head>
+    <h:body id="page" pt:ng-app="app">
+        <div class="page-content">
+
+            <ui:insert name="menu"/>
+
+            <div class="right-side">
+                <ui:insert name="topPanel"/>
+                <ui:insert name="content"/>
+            </div>
+        </div>
+        <ui:insert name="footerScript"/>
+    </h:body>
+</f:view>
+</html>
+
